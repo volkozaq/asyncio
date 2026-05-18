@@ -3,8 +3,7 @@ import datetime
 
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncAttrs
 from sqlalchemy.orm import sessionmaker, DeclarativeBase, MappedColumn, mapped_column
-from sqlalchemy import Integer, JSON
-
+from sqlalchemy import Integer, String
 
 
 
@@ -26,7 +25,15 @@ class Base(DeclarativeBase, AsyncAttrs):
 class StarWarsPersons(Base):
     __tablename__ = "swpers"
     id: MappedColumn[int] = mapped_column(Integer, primary_key=True)
-    json: MappedColumn[dict] = mapped_column(JSON)
+    sw_id: MappedColumn[int] = mapped_column(Integer)
+    name: MappedColumn[str] = mapped_column(String)
+    birth_year: MappedColumn[str] = mapped_column(String)
+    eye_color: MappedColumn[str] = mapped_column(String)
+    gender: MappedColumn[str] = mapped_column(String)
+    hair_color: MappedColumn[str] = mapped_column(String)
+    homeworld: MappedColumn[str] = mapped_column(String)
+    mass: MappedColumn[str] = mapped_column(String)
+    skin_color: MappedColumn[str] = mapped_column(String)
 
 async def open_orm():
     async with engine.begin() as conn:
